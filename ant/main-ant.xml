@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+
+<project name="Tapestry Build">
+	<target name="compile">
+		<fdt.exportAirApplication project="Tapestry" platform="AirDesktop" />
+	</target>
+	<target name="browse">
+	</target>
+	<target name="zip">
+			<zip destfile="${basedir}/tapestry-air-app.zip" basedir="${basedir}/../export"/>
+			<move file="${basedir}/tapestry-air-app.zip" todir="${basedir}/../deploy" />
+	</target>
+	<target name="all.run" depends="compile,browse,zip">
+	</target>
+</project>
