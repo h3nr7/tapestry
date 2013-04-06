@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<library name="Futura" output="lib" format="1" static="false">
-	<font id="futuraStd" family="Futura Std" style="0" cs="1,2,3,4,5" type="0" path="" ascff="false" autoId="true"/>
-</library>
