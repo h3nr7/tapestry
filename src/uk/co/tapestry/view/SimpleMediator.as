@@ -1,4 +1,5 @@
 package uk.co.tapestry.view {
+
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -10,7 +11,6 @@ package uk.co.tapestry.view {
 
 
 		// VARIABLES -------------------------------- //
-
 		
 		// CONSTRUCTOR ------------------------------ //		
 		public function SimpleMediator(mediatorName:String=null, viewComponent:Object=null) {

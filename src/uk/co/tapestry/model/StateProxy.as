@@ -9,7 +9,7 @@ package uk.co.tapestry.model {
 	public class StateProxy extends Proxy {
 		
 		// VARS ------------------------------------- //
-		public static const NAME:String				= "statesProxy";
+		public static const NAME:String				= "stateProxy";
 		
 		private var _nextState:State;
 		private var _currentState:State;

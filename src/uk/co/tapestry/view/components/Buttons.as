@@ -12,10 +12,12 @@ package uk.co.tapestry.view.components {
 		private var _upStateAlpha:Number;
 		private var _downStateAlpha:Number;
 		
+		public var _container:Sprite;
+		
 		// CONSTRUCTOR ------------------------------ //
-		public function Buttons() {
+		public function Buttons(cC:Sprite) {
 			super();	
-			
+			_container = cC;
 			alpha = upStateAlpha;
 		}
 		

@@ -28,7 +28,7 @@ com.powerflasher.fdt.core.mobile.AirDesktop.ICON.PATH.36x36=
 com.powerflasher.fdt.core.mobile.AirDesktop.ICON.PATH.48x48=
 com.powerflasher.fdt.core.mobile.AirDesktop.ICON.PATH.72x72=
 com.powerflasher.fdt.core.mobile.AirDesktop.MOBILE.DESCRIPTOR=bin/Tapestry-app.xml
-com.powerflasher.fdt.core.mobile.AirDesktop.PACKAGE.CONTENT=bin/Tapestry-app.xml > Tapestry-app.xml;bin/Tapestry.swf > Tapestry.swf;bin/assets;
+com.powerflasher.fdt.core.mobile.AirDesktop.PACKAGE.CONTENT=bin/Tapestry-app.xml > Tapestry-app.xml;bin/Tapestry.swf > Tapestry.swf;bin/assets;bin/xml;
 com.powerflasher.fdt.core.mobile.AirDesktop.SIGNATURE.CERTIFICATE=bin/tapestry-cert.p12
 com.powerflasher.fdt.core.mobile.AirDesktop.SIGNATURE.PWD=+GYZnTtAKGuxCS5dMTWUBA\=\=
 com.powerflasher.fdt.core.mobile.AirDesktop.SIGNATURE.REMEMBER.PWD=false

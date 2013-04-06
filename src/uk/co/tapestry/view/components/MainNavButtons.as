@@ -1,18 +1,19 @@
 package uk.co.tapestry.view.components {
-	import uk.co.tapestry.view.components.Buttons;
+
 	import flash.display.Sprite;
-	import flash.text.TextField;
 	import flash.events.MouseEvent;
+
 
 	/**
 	 * @author henryyp
 	 */
-	public class MainNavButtons extends Buttons {
+	public class MainNavButtons extends NavButtons {
+		
 		// VARIABLES -------------------------------- //
 		
 		// CONSTRUCTOR ------------------------------ //
-		public function MainNavButtons(labelText:String) {
-			super();
+		public function MainNavButtons(cC:Sprite, labelText:String) {
+			super(cC, labelText);
 		}
 		
 		// FUNCTIONS -------------------------------- //

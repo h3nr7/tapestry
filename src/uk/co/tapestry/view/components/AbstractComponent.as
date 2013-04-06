@@ -7,15 +7,25 @@ package uk.co.tapestry.view.components {
 	 * @author henryyp
 	 */
 	public class AbstractComponent extends Sprite implements IComponent {
-		
+
+		// VARIABLES -------------------------------- //		
 		public static const ANIMATION_IN_COMPLETE:String 		= "ANIMATION_IN_COMPLETE";
 		public static const ANIMATION_OUT_COMPLETE:String		= "ANIMATION_OUT_COMPLETE";
+		public var _mainContainer:Sprite;
+		public var _container:Sprite;
+
 
 		
-		public function AbstractComponent() {
+		// CONSTRUCTOR ------------------------------ //		
+		public function AbstractComponent(sS:Sprite) {
 			addEventListener(Event.ADDED_TO_STAGE, Init);
+			
+			_mainContainer = sS;
 		}
 
+
+		// FUNCTIONS -------------------------------- //
+		
 		public function Init() : void {
 		}
 

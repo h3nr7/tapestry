@@ -2,8 +2,9 @@ package uk.co.tapestry.controller {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import uk.co.tapestry.model.StateProxy;
-	import uk.co.tapestry.model.StateValues;
+	import uk.co.tapestry.model.data.StateValues;
 	import uk.co.tapestry.ApplicationFacade;
+	import uk.co.tapestry.view.*;
 
 	/**
 	 * @author henryyp
@@ -23,18 +24,25 @@ package uk.co.tapestry.controller {
 				switch (currentStatePath[0]) {
 					
 					case StateValues.GALLERY:
+						var galleryMediator:GalleryMediator 				= facade.retrieveMediator(GalleryMediator.NAME) as GalleryMediator;
 						break;
-					case StateValues.SCREENSAVER:
+					case StateValues.FILMS:
+						var filmsMediator:FilmsMediator 					= facade.retrieveMediator(FilmsMediator.NAME) as FilmsMediator;
 						break;
 					case StateValues.COMMUNICATIONS:
+						var communicationMediator:CommunicationsMediator 	= facade.retrieveMediator(CommunicationsMediator.NAME) as CommunicationsMediator;
 						break;
 					case StateValues.LIVING:
+						var livingMediator:LivingMediator 					= facade.retrieveMediator(LivingMediator.NAME) as LivingMediator;
 						break;
 					case StateValues.TAPESTRY:
+						var tapestryMediator:TapestryMediator 				= facade.retrieveMediator(TapestryMediator.NAME) as TapestryMediator;
 						break;
 					case StateValues.FINDER:
+						var finderMediator:FinderMediator 					= facade.retrieveMediator(FinderMediator.NAME) as FinderMediator;
 						break;
 					case StateValues.NEWS:
+						var newsMediator:NewsMediator 						= facade.retrieveMediator(NewsMediator.NAME) as NewsMediator;
 						break;
 
 				}
