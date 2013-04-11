@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<floor>
-	<room></room>
-</floor>
+<data>
+	<video>
+		<videolist>
+			<img src="img1">Img 1</img>
+			<img src="im2">Img 2</img>
+			<img src="img3">Img 3</img>
+			<img src="img4">Img 4</img>
+		</videolist>
+	</video>
+</data>

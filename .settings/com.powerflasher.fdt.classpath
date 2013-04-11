@@ -15,4 +15,6 @@
     <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/AssetMainNavi.swc</AS3Classpath>
     <AS3Classpath generateProblems="true" sdkBased="false" type="source" useAsSharedCode="false">src</AS3Classpath>
     <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/Avenir.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/Gotham_Medium.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/Gotham_Light.swc</AS3Classpath>
 </AS3Classpath>

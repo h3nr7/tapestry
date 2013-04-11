@@ -17,7 +17,7 @@ package uk.co.tapestry.view.components {
 		// CONSTRUCTOR ------------------------------ //
 		public function Buttons(cC:Sprite) {
 			super();	
-			_container = cC;
+			_container 	= cC;
 			alpha = upStateAlpha;
 		}
 		
@@ -62,6 +62,10 @@ package uk.co.tapestry.view.components {
 		
 		public function set downStateAlpha(value:Number):void {
 			_downStateAlpha = value;
+		}
+		
+		public function get container():Sprite {
+			return _container;
 		}
 		
 	}

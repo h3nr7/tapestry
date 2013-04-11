@@ -24,7 +24,10 @@ package uk.co.tapestry {
 		//States
 		public static const STARTUP:String 					= "ApplicationFacade.STARTUP";
 		public static const STATE_CHANGE:String 			= "ApplicationFacade.STATE_CHANGE";
+		public static const STATE_CHANGE_COMPLETE:String	= "ApplicationFacade.STATE_CHANGE_COMPLETE";
 		public static const CHECK_NEXT_STATE:String 		= "ApplicationFacade.CHECK_NEXT_STATE";
+		public static const ENTER_NEXT_STATE:String 		= "ApplicationFacade.ENTER_NEXT_STATE";
+		public static const EXIT_CURRENT_STATE:String		= "ApplicationFacade.EXIT_CURRENT_STATE";
 		public static const LOAD:String	 					= "ApplicationFacade.LOAD";
 		
 		//Containers
@@ -47,7 +50,11 @@ package uk.co.tapestry {
 			// REGESTER Controllers HERE -------------- //
 			registerCommand(STARTUP, StartupCommand);
 			registerCommand(STATE_CHANGE, StateChangeCommand);
+			registerCommand(EXIT_CURRENT_STATE, ExitCurrentStateCommand);
 			registerCommand(CHECK_NEXT_STATE, CheckNextStateCommand);
+			registerCommand(LOAD, LoadCommand);
+			registerCommand(ENTER_NEXT_STATE, EnterNextStateCommand);
+			registerCommand(STATE_CHANGE_COMPLETE, StateChangeCompleteCommand);
 
 		}
 		
@@ -61,7 +68,7 @@ package uk.co.tapestry {
 			initAssets.append(new XMLLoader(configXMLURL()));
 			initAssets.append(new XMLLoader(videoXMLURL()));
 			initAssets.append(new XMLLoader(finderXMLURL()));
-			initAssets.append(new XMLLoader(slideshowXMLURL()));
+			initAssets.append(new XMLLoader(communicationsXMLURL()));
 			initAssets.append(new XMLLoader(galleryXMLURL()));
 			
 			initAssets.load();
@@ -169,9 +176,9 @@ package uk.co.tapestry {
 			return file.url;
 		}
 		
-		public function slideshowXMLURL():String {
+		public function communicationsXMLURL():String {
 			
-			var pPath:String 	= "xml/slideshow.xml";
+			var pPath:String 	= "xml/communications.xml";
 			var file:File 		= File.applicationDirectory.resolvePath(pPath);
 			return file.url;
 		}

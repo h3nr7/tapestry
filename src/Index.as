@@ -34,7 +34,7 @@ package {
 			removeEventListener(Event.ADDED_TO_STAGE, Init);
 			
 			stage.align 			= StageAlign.TOP_LEFT;
-			stage.scaleMode 		= StageScaleMode.NO_SCALE;
+			stage.scaleMode 		= StageScaleMode.SHOW_ALL;
 			stage.frameRate	 		= 25;
 			stage.stageFocusRect	= false;
 			stage.displayState 		= StageDisplayState.FULL_SCREEN_INTERACTIVE;

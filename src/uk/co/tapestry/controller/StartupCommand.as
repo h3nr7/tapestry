@@ -1,5 +1,7 @@
 package uk.co.tapestry.controller {
 	
+	import uk.co.tapestry.model.DataProxy;
+	import uk.co.tapestry.view.CommunicationsMediator;
 	import uk.co.tapestry.model.data.StateValues;
 	import uk.co.tapestry.model.State;
 	import com.greensock.loading.LoaderMax;
@@ -23,14 +25,22 @@ package uk.co.tapestry.controller {
 		}
 		
 		override public function execute(notification:INotification):void {
-			
-			
+
+			//XML data proxy
+			var configXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).configXMLURL());
+			var videoXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).videoXMLURL());
 			var finderXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).finderXMLURL());
+			var communicationsXML:XML 	= LoaderMax.getContent((facade as ApplicationFacade).communicationsXMLURL());
+			var galleryXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).galleryXMLURL());
+			trace(galleryXML);
+			var dataProxy:DataProxy 		= new DataProxy(configXML, videoXML, finderXML, communicationsXML, galleryXML);
+			facade.registerProxy(dataProxy);
 			
-			
+			//main navi mediator
 			mainNav = new MainNaviMediator();
 			facade.registerMediator(mainNav);
 			
+			//state proxy
 			var stateProxy:StateProxy = new StateProxy();
 			facade.registerProxy(stateProxy);
 			
@@ -38,7 +48,6 @@ package uk.co.tapestry.controller {
 			var pathNames:Array = new Array(StateValues.COMMUNICATIONS);
 			sendNotification(ApplicationFacade.STATE_CHANGE, new State(pathNames));
 			
-			//TODO:
 		
 			
 		}

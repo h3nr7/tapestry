@@ -21,22 +21,24 @@ package uk.co.tapestry.view.components {
 		// VARIABLES -------------------------------- //
 		public var closeX:Number 				= -250;
 		public var openX:Number 				= 0;
-		
-		private var labels:Object 				= {
-														"communications": 	"Communications",
-														"living": 			"Living At \n King's Cross",
-														"tapestry": 		"Tapestry",
-														"finder": 			"Apartment \n Finder",
-														"latest": 			"Latest News",
-														"gallery": 			"Gallery",
-														"films":			"Films"
-													};
-		
+		private var labels:Object;
+		private var tT:Array;
+		private var bg:Sprite;
 
 
 		
 		// CONSTRUCTOR ------------------------------ //		
 		public function MainNavi(sS:Sprite) {
+			
+			labels		= {
+								"communications": 	"Communications",
+								"living": 			"Living At \n King's Cross",
+								"tapestry": 		"Tapestry",
+								"finder": 			"Apartment \n Finder",
+								"news": 			"Latest News",
+								"gallery": 			"Gallery",
+								"films":			"Films"
+							};
 			
 			super(sS);
 			_container = new AssetMainNavi();
@@ -52,35 +54,49 @@ package uk.co.tapestry.view.components {
 			
 			super.Init();
 			
+			tT 		= new Array();
 			//init main buttons
 			for(var i:String in labels) {
-
-				var tT:MainNavButtons = new MainNavButtons((_container.getChildByName(i) as Sprite), labels[i]);
-				
-				tT.addEventListener(MouseEvent.CLICK, NavButtonClickHandler);
-				
+				var tmp:MainNavButtons 	= new MainNavButtons((_container.getChildByName(i) as Sprite), labels[i]);
+				tT[i] 					= tmp;
 			}
 			
 			//init position
-			_container.x = closeX;
-			(_container.getChildByName('bg') as Sprite).addEventListener(MouseEvent.CLICK, NavClickHandler);
-			
+			_container.x 			= closeX;
+			bg 						= _container.getChildByName('bg') as Sprite;
+			Enable();
+		}
+		
+		override public function Enable():void {
+			//enable
+			for(var i:String in labels) {
+				tT[i].container.addEventListener(MouseEvent.CLICK, NavButtonClickHandler);
+			}
+			bg.addEventListener(MouseEvent.CLICK, NavClickHandler);
+		}
+		
+		override public function Disable():void {
+			//disable
+			for(var i:String in labels) {
+				tT[i].container.removeEventListener(MouseEvent.CLICK, NavButtonClickHandler);
+			}
+			bg.removeEventListener(MouseEvent.CLICK, NavClickHandler);
 		}
 		
 		
 		// HANDLERS ------------------------------ //		
 		private function NavClickHandler(eE:MouseEvent):void {
 			if (_container.x >= 0) {
-				TweenMax.to(_container, 0.2, {x:closeX, onComplete: Enable});
+				TweenMax.to(_container, 0.2, {x:closeX, onStart: Disable, onComplete: Enable});
 			}
 			else {
-				TweenMax.to(_container, 0.2, {x:openX, onComplete: Disable});
+				TweenMax.to(_container, 0.2, {x:openX, onStart: Disable, onComplete: Enable});
 			}
 		}
 		
 		private function NavButtonClickHandler(eE:MouseEvent):void {
-			trace('meme');
-			dispatchEvent(new MainNaviEvent(MainNaviEvent.MAINNAV_CLICK, {}));
+			trace('Main Navi Button Click: '+eE.currentTarget.name);
+			dispatchEvent(new MainNaviEvent(MainNaviEvent.MAINNAV_CLICK, eE.currentTarget.name));
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package uk.co.tapestry.view {
 	
+	import uk.co.tapestry.model.State;
+	import uk.co.tapestry.model.data.StateValues;
 	import flash.display.Sprite;
 	import uk.co.tapestry.view.SimpleMediator;
 
@@ -8,6 +10,7 @@ package uk.co.tapestry.view {
 
 	import uk.co.tapestry.ApplicationFacade;
 	import uk.co.tapestry.view.components.MainNavi;
+	import uk.co.tapestry.events.MainNaviEvent;
 
 	/**
 	 * @author henryyp
@@ -24,7 +27,8 @@ package uk.co.tapestry.view {
 		
 		override public function onRegister():void {
 			super.onRegister();
-			viewComponent		= new MainNavi( (facade as ApplicationFacade).getContainerByName('naviMainContainer') as Sprite);	
+			viewComponent		= new MainNavi( (facade as ApplicationFacade).getContainerByName('naviMainContainer') as Sprite);
+			Init();	
 		}
 		
 		override public function handleNotification (notification:INotification):void {
@@ -32,7 +36,6 @@ package uk.co.tapestry.view {
 			switch (notification.getName()) {
 				
 				case ApplicationFacade.STARTUP:
-						trace('Main Navi Initialising');
 					break;
 				
 			}
@@ -42,7 +45,37 @@ package uk.co.tapestry.view {
 		// FUNCTIONS -------------------------------- //	
 		
 		public function Init():void {
+			(component as MainNavi).addEventListener(MainNaviEvent.MAINNAV_CLICK, MainnavClickHandler);
+		}
 		
+		private function MainnavClickHandler(mM:MainNaviEvent):void {
+			
+			/*var pathNames:Array;
+			switch (mM.targetContent) {
+				case StateValues.COMMUNICATIONS:
+					pathNames = new Array(StateValues.COMMUNICATIONS);
+					sendNotification(ApplicationFacade.STATE_CHANGE, new State( pathNames )); 
+					break;
+				case StateValues.LIVING:
+					pathNames = new Array(StateValues.LIVING);
+					break;
+				case StateValues.TAPESTRY:
+					break;
+				case StateValues.NEWS:
+					pathNames = new Array(StateValues.NEWS);
+					break;
+				case StateValues.NEWS:
+					break;
+				case StateValues.GALLERY:
+					break;
+				case StateValues.FILMS:
+					break;
+			}*/
+			
+			trace('MainNaviMediator: ' + mM.targetContent);
+			if (mM.targetContent) {
+				sendNotification(ApplicationFacade.STATE_CHANGE, new State( new Array(mM.targetContent) ));
+			}
 		}
 
 	}

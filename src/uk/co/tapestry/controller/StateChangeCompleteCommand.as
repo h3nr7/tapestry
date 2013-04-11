@@ -15,11 +15,13 @@ package uk.co.tapestry.controller {
 		
 		override public function execute(notification:INotification):void {
 			
-			var stateProxy:StateProxy = facade.retrieveMediator(StateProxy.NAME) as StateProxy;
+			var stateProxy:StateProxy = facade.retrieveProxy(StateProxy.NAME) as StateProxy;
 			
-			if (stateProxy.currentState != null) {
+			//Used for Animation Out then killing it, not used most probably
+			/*if (stateProxy.currentState != null) {
 				
 				var currentStatePath:Array = stateProxy.currentState.statePath;
+				
 				
 				switch (currentStatePath[0]) {
 					
@@ -46,7 +48,7 @@ package uk.co.tapestry.controller {
 						break;
 
 				}
-			}
+			}*/
 			stateProxy.currentState = stateProxy.nextState;
 			stateProxy.nextState 	= null;
 			trace('State changed.  currentState: ' + stateProxy.currentState);

@@ -8,20 +8,20 @@ package uk.co.tapestry.model.data {
 	public class StateValues {
 		
 		//MAIN NAVI
-		public static const GALLERY:String 				= "Gallery";
-		public static const FILMS:String				= "Films";
-		public static const COMMUNICATIONS:String 		= "Communications";
-		public static const LIVING:String 				= "Living";
-		public static const TAPESTRY:String				= "Tapestry";
-		public static const FINDER: String 				= "Finder";
-		public static const NEWS:String 				= "News";
+		public static const GALLERY:String 				= "gallery";
+		public static const FILMS:String				= "films";
+		public static const COMMUNICATIONS:String 		= "communications";
+		public static const LIVING:String 				= "living";
+		public static const TAPESTRY:String				= "tapestry";
+		public static const FINDER: String 				= "finder";
+		public static const NEWS:String 				= "news";
 		
 		//2ND LEVEL SUB NAVI
 		//Tapestry
-		//public static const TAPESTRY_MAKER:String 		= "Tapestry_maker";
-		//public static const APPARTMENTS:String 			= "The_Appartment";
-		//public static const GARDEN:String 				= "The_Garden_and_Amenities";
-		//public static const SPECIFICATION:String 		= "Specification";
+		public static const MAKER:String 				= "Tapestry_maker";
+		public static const APARTMENTS:String 			= "The_Appartment";
+		public static const LOCATION:String 				= "Location";
+		public static const SPECIFICATION:String 		= "Specification";
 		
 		
 		//3RD LEVEL SUB NAVI

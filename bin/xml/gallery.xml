@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<floor>
-	<room></room>
-</floor>
+<data>
+	<gallery>
+		<slideshow>
+			<img src="assets/img/2899_TAPESTRY_GARDEN-VIEW-01_RevG.jpg" name="img1">Img 1</img>
+			<img src="assets/img/120320_282.jpg" name="img2">Img 2</img>
+		</slideshow>
+	</gallery>
+</data>

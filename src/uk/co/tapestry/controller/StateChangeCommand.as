@@ -27,9 +27,26 @@ package uk.co.tapestry.controller {
 				sendNotification(ApplicationFacade.CHECK_NEXT_STATE);
 			}
 			else {
-				
 				var currentState:State 		 = stateProxy.currentState;
-				//TODO: StateChangeCommand check if current is same as next
+				var pathLength:uint = Math.min(nextState.statePath.length, currentState.statePath.length);
+				for (var i:int = 0; i < pathLength; i++)
+				{
+					if (currentState.statePath[i] != nextState.statePath[i])
+					{
+						trace("2 currentState.statePath[i] != nextState.statePath[i]", ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
+						sendNotification(ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
+	
+						return;
+					}
+					else if (currentState.statePath[i] == nextState.statePath[i])
+					{
+						trace("3 currentState.statePath[i] == nextState.statePath[i]", ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
+						//sendNotification(ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
+	
+						return;
+					}
+
+				}
 				
 			}
 			

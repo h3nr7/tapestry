@@ -15,16 +15,22 @@ package uk.co.tapestry.events {
 				
 		
 		private var _data:Object;
+		private var _targetContent:String;
 		
 		
-		public function MainNaviEvent(type : String, data:Object, bubbles:Boolean=false, cancelable:Boolean=false) {
+		public function MainNaviEvent(type : String, targetContent:String, data:Object = null, bubbles:Boolean=false, cancelable:Boolean=false) {
 			super(type, bubbles, cancelable);
-			_data 		= data;
+			_data 				= data;
+			_targetContent		= targetContent;
 		}
 		
 		public function get data():Object {
 			
 			return _data;
+		}
+		
+		public function get targetContent():String {
+			return _targetContent;	
 		}
 	}
 }

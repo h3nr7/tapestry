@@ -1,4 +1,5 @@
 package uk.co.tapestry.view.components {
+	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import uk.co.tapestry.view.IComponent;
@@ -9,15 +10,13 @@ package uk.co.tapestry.view.components {
 	public class AbstractComponent extends Sprite implements IComponent {
 
 		// VARIABLES -------------------------------- //		
-		public static const ANIMATION_IN_COMPLETE:String 		= "ANIMATION_IN_COMPLETE";
-		public static const ANIMATION_OUT_COMPLETE:String		= "ANIMATION_OUT_COMPLETE";
 		public var _mainContainer:Sprite;
 		public var _container:Sprite;
 
 
 		
 		// CONSTRUCTOR ------------------------------ //		
-		public function AbstractComponent(sS:Sprite) {
+		public function AbstractComponent(sS:Sprite = null) {
 			addEventListener(Event.ADDED_TO_STAGE, Init);
 			
 			_mainContainer = sS;
@@ -34,11 +33,18 @@ package uk.co.tapestry.view.components {
 
 		public function Kill(isSlowly : Boolean = false) : void {
 			removeEventListener(Event.ADDED_TO_STAGE,Init);
-			stage.addEventListener(Event.RESIZE, onResize);
 		}
 		
-		protected function onResize(e:Event=null):void {
-			
+		protected function onAnimationInComplete(e:Event = null):void
+		{
+			dispatchEvent(new StateChangeEvent(StateChangeEvent.ANIMATION_IN_COMPLETE));
+			trace('message StateChangeEvent: '+StateChangeEvent.ANIMATION_IN_COMPLETE);
 		}
+		
+		protected function onAnimationOutComplete(e:Event = null):void
+		{
+			dispatchEvent(new StateChangeEvent(StateChangeEvent.ANIMATION_OUT_COMPLETE));
+		}
+		
 	}
 }
