@@ -83,10 +83,20 @@ package uk.co.tapestry.controller {
 					break;
 				
 				//Secondary navi System
+				//TODO: Secondary asset load
 				case StateValues.MAKER:
-					//TODO: NEWS SECTION TEMPORARY
-					trace('CHECKNEXTSTATE: Maker with no Queue');
+					trace('CHECKNEXTSTATE: Maker TODO');
 					break;
+				case StateValues.APARTMENTS:
+					trace('CHECKNEXTSTATE: Apartments TODO');
+					break;
+				case StateValues.LOCATION:
+					trace('CHECKNEXTSTATE: Location TODO');
+					break;
+				case StateValues.SPECIFICATION:
+					trace('CHECKNEXTSTATE: Specifications TODO');
+					break;
+					
 			}
 			
 			//function to add to LoaderMax queue

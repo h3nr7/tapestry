@@ -1,4 +1,7 @@
 package uk.co.tapestry.controller {
+	import uk.co.tapestry.view.SpecificationsMediator;
+	import uk.co.tapestry.view.LocationMediator;
+	import uk.co.tapestry.view.ApartmentsMediator;
 	import uk.co.tapestry.view.MakerMediator;
 	import uk.co.tapestry.view.FilmsMediator;
 	import uk.co.tapestry.view.GalleryMediator;
@@ -66,9 +69,22 @@ package uk.co.tapestry.controller {
 						var filmsM:FilmsMediator = facade.retrieveMediator(FilmsMediator.NAME) as FilmsMediator;
 						filmsM.Kill();
 						break;
+					//Secondary Navi
 					case StateValues.MAKER:
 						var makerM:MakerMediator = facade.retrieveMediator(MakerMediator.NAME) as MakerMediator;
 						makerM.Kill();
+						break;
+					case StateValues.APARTMENTS:
+						var apartM:ApartmentsMediator = facade.retrieveMediator(ApartmentsMediator.NAME) as ApartmentsMediator;
+						apartM.Kill();
+						break;
+					case StateValues.LOCATION:
+						var locationM:LocationMediator = facade.retrieveMediator(LocationMediator.NAME) as LocationMediator;
+						locationM.Kill();
+						break;
+					case StateValues.SPECIFICATION:
+						var specM:SpecificationsMediator = facade.retrieveMediator(SpecificationsMediator.NAME) as SpecificationsMediator;
+						specM.Kill();
 						break;
 				}
 			}

@@ -45,7 +45,7 @@ package uk.co.tapestry.controller {
 			facade.registerProxy(stateProxy);
 			
 			//begin with one of the state
-			var pathNames:Array = new Array(StateValues.COMMUNICATIONS);
+			var pathNames:Array = new Array(StateValues.FILMS);
 			sendNotification(ApplicationFacade.STATE_CHANGE, new State(pathNames));
 			
 		

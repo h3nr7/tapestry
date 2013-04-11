@@ -1,4 +1,8 @@
 package uk.co.tapestry.controller {
+	import uk.co.tapestry.view.components.Location;
+	import uk.co.tapestry.view.SpecificationsMediator;
+	import uk.co.tapestry.view.LocationMediator;
+	import uk.co.tapestry.view.ApartmentsMediator;
 	import uk.co.tapestry.view.MakerMediator;
 	import uk.co.tapestry.view.FilmsMediator;
 	import uk.co.tapestry.view.GalleryMediator;
@@ -31,11 +35,13 @@ package uk.co.tapestry.controller {
 			var livingMediator:LivingMediator;
 			var tapestryMediator:TapestryMediator;
 			var finderMediator:FinderMediator;
-			var newsMediator:NewsMediator;
 			var galleryMediator:GalleryMediator;
 			var filmsMediator:FilmsMediator;
 			//Secondary Navi
 			var makerMediator:MakerMediator;
+			var apartmentsMediator:ApartmentsMediator;
+			var locationMediator:LocationMediator;
+			var specificationsMediator:SpecificationsMediator;
 			
 			trace('EnterNextStateCommand (CurrentState): ' + stateProxy.currentState);
 			if (stateProxy.currentState == null) {	
@@ -51,11 +57,13 @@ package uk.co.tapestry.controller {
 					case StateValues.GALLERY:
 					case StateValues.FILMS:
 					case StateValues.MAKER:
+					case StateValues.APARTMENTS:
+					case StateValues.LOCATION:
+					case StateValues.SPECIFICATION:
 						trace('ENTERNEXTSTATE (if) (COMMUNICATIONS): ' + nextStatePath[0]);
+						//Communications
 						communicationMediator = new CommunicationsMediator();
 						facade.registerMediator(communicationMediator);
-						//Communications - default
-						communicationMediator.Init();
 						//Living
 						livingMediator = new LivingMediator();
 						facade.registerMediator(livingMediator);
@@ -72,13 +80,23 @@ package uk.co.tapestry.controller {
 						//Gallery
 						galleryMediator = new GalleryMediator();
 						facade.registerMediator(galleryMediator);
-						//Films
+						//Films - default
 						filmsMediator = new FilmsMediator();
 						facade.registerMediator(filmsMediator);
+						filmsMediator.Init();
 						//Secondary navi
 						//Maker
 						makerMediator = new MakerMediator();
 						facade.registerMediator(makerMediator);
+						//Apartments
+						apartmentsMediator = new ApartmentsMediator();
+						facade.registerMediator(apartmentsMediator);
+						//Location
+						locationMediator = new LocationMediator();
+						facade.registerMediator(locationMediator);
+						//Specifications
+						specificationsMediator = new SpecificationsMediator();
+						facade.registerMediator(specificationsMediator);
 						break;
 				}
 			}	
@@ -120,6 +138,19 @@ package uk.co.tapestry.controller {
 					case StateValues.MAKER:
 						makerMediator = facade.retrieveMediator(MakerMediator.NAME) as MakerMediator;
 						makerMediator.Init();
+						break;
+					case StateValues.APARTMENTS:
+						apartmentsMediator = facade.retrieveMediator(ApartmentsMediator.NAME) as ApartmentsMediator;
+						apartmentsMediator.Init();
+						break;
+					case StateValues.LOCATION:
+						locationMediator = facade.retrieveMediator(LocationMediator.NAME) as LocationMediator;
+						locationMediator.Init();
+						break;
+					case StateValues.SPECIFICATION:
+						specificationsMediator = facade.retrieveMediator(SpecificationsMediator.NAME) as SpecificationsMediator;
+						specificationsMediator.Init();
+						break;
 				}
 			}
 		}

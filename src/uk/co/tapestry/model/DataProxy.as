@@ -40,6 +40,7 @@ package uk.co.tapestry.model {
 				var tmp:Array 	= new Array();
 				tmp['title'] 	= ig.toString();
 				tmp['name']		= ig.@name;
+				tmp['isvideo']	= ig.@isvideo;
 				tmp['src']		= ig.@src;
 				output.push(tmp);
 			}
@@ -57,6 +58,7 @@ package uk.co.tapestry.model {
 				var tmp:Array 	= new Array();
 				tmp['title'] 	= ig.toString();
 				tmp['name']		= ig.@name;
+				tmp['isvideo']	= ig.@isvideo;
 				tmp['src']		= ig.@src;
 				output.push(tmp);
 			}

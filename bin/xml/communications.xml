@@ -3,12 +3,12 @@
 <data>
 	<communications>
 		<slideshow>
-			<img src="assets/img/2899_TAPESTRY_GARDEN-VIEW-01_RevG.jpg" name="img1">Img 1</img>
-			<img src="assets/img/120320_282.jpg" name="img2">Img 2</img>
-			<img src="assets/img/120714_009.jpg" name="img3">Img 3</img>
-			<img src="assets/img/C16D54.jpg" name="img4">Img 4</img>
-			<img src="assets/img/CANALVIEW.jpg" name="img5">Img 5</img>
-			<img src="assets/img/GARDENVIEW02.jpg" name="img6">Img 6</img>
+			<img src="assets/img/2899_TAPESTRY_GARDEN-VIEW-01_RevG.jpg" name="img1" isvideo="false">Img 1</img>
+			<img src="assets/img/120320_282.jpg" name="img2" isvideo="false">Img 2</img>
+			<img src="assets/img/120714_009.jpg" name="img3" isvideo="false">Img 3</img>
+			<img src="assets/img/C16D54.jpg" name="img4" isvideo="false">Img 4</img>
+			<img src="assets/img/CANALVIEW.jpg" name="img5" isvideo="false">Img 5</img>
+			<img src="assets/img/GARDENVIEW02.jpg" name="img6" isvideo="false">Img 6</img>
 		</slideshow>
 	</communications>
 </data>

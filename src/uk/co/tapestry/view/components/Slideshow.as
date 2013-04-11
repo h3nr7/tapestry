@@ -1,4 +1,5 @@
 package uk.co.tapestry.view.components {
+	import com.greensock.loading.VideoLoader;
 	import flash.text.TextFormat;
 	import flash.text.AntiAliasType;
 	import flash.text.TextFieldAutoSize;
@@ -78,48 +79,59 @@ package uk.co.tapestry.view.components {
 			iL 							= new Array();
 			iT							= new Array();
 			for (var i:uint=0; i<_data.length; i++) {
-				var tmp:ImageLoader = LoaderMax.getLoader(_data[_data.length-i-1]['name']) as ImageLoader;
-				//set to center
-				tmp.content.x		= -(tmp.content.width-imgMaskerMask.width)/2;
-				tmp.content.y		= -(tmp.content.height-imgMaskerMask.height)/2;
-				imgMaskerInner.addChild(tmp.content);
+				//check if it is video or image
 				
-				//thumb
-				var scale:Number = 0.072;
-				var tS:Sprite 		= new Sprite();
-				var tT:Sprite		= new Sprite();
-				var g:Graphics 		= tT.graphics;
-				g.beginFill( 0xffffff, 0.7 );
-				g.drawRect( 0, 0, 5, 75);
-				g.drawRect( 5, 0, 100, 5);
-				g.drawRect( 100, 5, 5, 70);
-				g.drawRect( 5, 70, 95, 5);
-				g.endFill( );
-				//set the scale
-				var matrix:Matrix = new Matrix();
-				matrix.scale(scale, scale);
-				//redraw smaller scale
-				var smallBMD:BitmapData = new BitmapData((imgMasker.width*scale), (imgMasker.height*scale), true, 0x000000);
-				smallBMD.draw(imgMasker, matrix, null, null, null, true);
-				var bmp:Bitmap = new Bitmap(smallBMD, PixelSnapping.NEVER, true);
-				bmp.x						= 0;
-				bmp.y						= 0;
-				tS.y 						= 5;
-				tS.x 						= 15+120*(_data.length-i-1);
-				tT.name						= 'frame';
-				tS.name						= 'thumb'+ (_data.length-i-1);
-				tS.addChild(bmp);
-				tS.addChild(tT);
-				thumbnail.addChild(tS);
+				if (_data[_data.length-i-1]['isvideo'] == 'true') {
+					var tmpV:VideoLoader = LoaderMax.getLoader(_data[_data.length-i-1]['name']) as VideoLoader;
+						
+				}
+				else {
+					var tmp:ImageLoader = LoaderMax.getLoader(_data[_data.length-i-1]['name']) as ImageLoader;
+					
+					//set to center
+					tmp.content.x		= -(tmp.content.width-imgMaskerMask.width)/2;
+					tmp.content.y		= -(tmp.content.height-imgMaskerMask.height)/2;
+					imgMaskerInner.addChild(tmp.content);
+					
+					//thumb
+					var scale:Number = 0.072;
+					var tS:Sprite 		= new Sprite();
+					var tT:Sprite		= new Sprite();
+					var g:Graphics 		= tT.graphics;
+					g.beginFill( 0xffffff, 0.7 );
+					g.drawRect( 0, 0, 5, 75);
+					g.drawRect( 5, 0, 100, 5);
+					g.drawRect( 100, 5, 5, 70);
+					g.drawRect( 5, 70, 95, 5);
+					g.endFill( );
+					//set the scale
+					var matrix:Matrix = new Matrix();
+					matrix.scale(scale, scale);
+					//redraw smaller scale
+					var smallBMD:BitmapData = new BitmapData((imgMasker.width*scale), (imgMasker.height*scale), true, 0x000000);
+					smallBMD.draw(imgMasker, matrix, null, null, null, true);
+					var bmp:Bitmap = new Bitmap(smallBMD, PixelSnapping.NEVER, true);
+					bmp.x						= 0;
+					bmp.y						= 0;
+					tS.y 						= 5;
+					tS.x 						= 15+120*(_data.length-i-1);
+					tT.name						= 'frame';
+					tS.name						= 'thumb'+ (_data.length-i-1);
+					tS.addChild(bmp);
+					tS.addChild(tT);
+					thumbnail.addChild(tS);
+					
+					tT.visible					= false;
+					iT[_data.length-i-1]			= tS;
+					//add event listener
+					tS.addEventListener(MouseEvent.CLICK, thumbClickHandler);
+					
+					//set the slideshow
+					iL[_data.length-i-1] = tmp;
+					iL[_data.length-i-1].content.visible = false;
 				
-				tT.visible					= false;
-				iT[_data.length-i-1]			= tS;
-				//add event listener
-				tS.addEventListener(MouseEvent.CLICK, thumbClickHandler);
-				
-				//set the slideshow
-				iL[_data.length-i-1] = tmp;
-				iL[_data.length-i-1].content.visible = false;
+				}
+
 				
 			}
 			

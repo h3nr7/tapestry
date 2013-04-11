@@ -1,5 +1,6 @@
 package uk.co.tapestry.view.components {
 	
+	import com.greensock.easing.Elastic;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
 	import flash.display.MovieClip;
@@ -44,7 +45,7 @@ package uk.co.tapestry.view.components {
 			
 			//bg.alpha 				= 0.7;
 			_container.alpha = 0;
-			TweenMax.to(_container, 1, {alpha:1, onComplete:onAnimationInComplete});
+			TweenMax.fromTo(_container, 0.5, {x: _container.x+30, alpha:0, ease: Elastic.easeInOut}, {x: _container.x, alpha:1, onComplete:onAnimationInComplete});
 		}
 		
 		override public function Kill(isSlow:Boolean = false):void {

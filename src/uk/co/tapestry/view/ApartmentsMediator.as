@@ -1,4 +1,5 @@
 package uk.co.tapestry.view {
+	import uk.co.tapestry.view.components.Apartments;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
 	import uk.co.tapestry.view.components.Living;
@@ -15,7 +16,7 @@ package uk.co.tapestry.view {
 		
 		
 		// VARIABLES -------------------------------- //
-		public static const NAME:String 					= "livingMediator";
+		public static const NAME:String 					= "apartmentsMediator";
 		
 		// CONSTRUCTOR ------------------------------ //		
 		public function ApartmentsMediator() {
@@ -45,14 +46,14 @@ package uk.co.tapestry.view {
 		
 		public function Init():void {
 			var dD:DataProxy 	= facade.retrieveProxy(DataProxy.NAME) as DataProxy;	
-			viewComponent		= new Living( ((facade as ApplicationFacade).getContainerByName('mainContainer') as Sprite), dD.getNewsList());
-			(component as Living).addEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);
-			(component as Living).addEventListener(StateChangeEvent.ANIMATION_OUT_COMPLETE, onAnimationOutComplete);	
+			viewComponent		= new Apartments( ((facade as ApplicationFacade).getContainerByName('mainContainer') as Sprite), dD.getNewsList());
+			(component as Apartments).addEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);
+			(component as Apartments).addEventListener(StateChangeEvent.ANIMATION_OUT_COMPLETE, onAnimationOutComplete);	
 			trace('News Mediator Init');
 		}
 		
 		public function Kill():void {
-			(component as Living).Kill();
+			(component as Apartments).Kill();
 		}
 		
 		// HANDLERS --------------------------------- //	
