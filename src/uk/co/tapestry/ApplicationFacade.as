@@ -1,5 +1,6 @@
 package uk.co.tapestry {
 	
+	import com.greensock.loading.SelfLoader;
 	import flash.display.Bitmap;
 	import com.greensock.events.LoaderEvent;
 	import org.puremvc.as3.patterns.facade.Facade;
@@ -65,12 +66,14 @@ package uk.co.tapestry {
 			_container = cC;
 			AssignContainers();
 			var initAssets:LoaderMax = new LoaderMax({onComplete:onInitAssetsLoadComplete});
+			initAssets.append(new SelfLoader(_container, {name:"self"}));
 			initAssets.append(new XMLLoader(configXMLURL()));
 			initAssets.append(new XMLLoader(videoXMLURL()));
 			initAssets.append(new XMLLoader(finderXMLURL()));
 			initAssets.append(new XMLLoader(communicationsXMLURL()));
 			initAssets.append(new XMLLoader(galleryXMLURL()));
-			
+			initAssets.append(new XMLLoader(specificationsXMLURL()));
+			initAssets.append(new XMLLoader(newsXMLURL()));
 			initAssets.load();
 			
 			
@@ -186,6 +189,20 @@ package uk.co.tapestry {
 		public function galleryXMLURL():String {
 			
 			var pPath:String 	= "xml/gallery.xml";
+			var file:File 		= File.applicationDirectory.resolvePath(pPath);
+			return file.url;
+		}
+		
+		public function specificationsXMLURL():String {
+			
+			var pPath:String 	= "xml/specifications.xml";
+			var file:File 		= File.applicationDirectory.resolvePath(pPath);
+			return file.url;
+		}
+		
+		public function newsXMLURL():String {
+			
+			var pPath:String 	= "xml/news.xml";
 			var file:File 		= File.applicationDirectory.resolvePath(pPath);
 			return file.url;
 		}

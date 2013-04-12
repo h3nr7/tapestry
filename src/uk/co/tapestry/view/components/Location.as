@@ -1,5 +1,6 @@
 package uk.co.tapestry.view.components {
 	
+	import uk.co.tapestry.view.INavi;
 	import com.greensock.easing.Elastic;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
@@ -17,13 +18,13 @@ package uk.co.tapestry.view.components {
 	/**
 	 * @author henryyp
 	 */
-	public class Location extends AbstractComponent implements IComponent {
+	public class Location extends AbstractTapestry implements IComponent, INavi {
 		
 		// VARIABLES -------------------------------- //
 		
-		private var bg:Sprite;
+		//private var bg:Sprite;
 		private var _data:Array;
-
+		private var _map:ScalableMap;
 		
 		// CONSTRUCTOR ------------------------------ //		
 		public function Location(sS:Sprite, iData:Array) {
@@ -37,21 +38,27 @@ package uk.co.tapestry.view.components {
 		// FUNCTION ------------------------------ //		
 		override public function Init():void {
 			
+			_container 		= new AssetLocations();
 			super.Init();
-			_container 		= new AssetNews();
-			bg	 			= _container.getChildByName('bg') as Sprite;
+			//bg	 			= _container.getChildByName('bg') as Sprite;
 			//TODO: when animated in
+			_map		= new ScalableMap();
+			_map.Init();
+			
 			_mainContainer.addChild(_container);
+			_container.addChild(_map);
 			
 			//bg.alpha 				= 0.7;
 			_container.alpha = 0;
 			TweenMax.fromTo(_container, 0.5, {y: _container.y+30, alpha:0, ease: Elastic.easeInOut}, {y: _container.y, alpha:1, onComplete:onAnimationInComplete});
+			Enable();
 		}
 		
 		override public function Kill(isSlow:Boolean = false):void {
 			trace('Location Component Killed');
 			_mainContainer.removeChild(_container);
 			_container = null;
+			Disable();
 			onAnimationOutComplete();
 		}
 					

@@ -1,4 +1,6 @@
 package uk.co.tapestry.view {
+	import uk.co.tapestry.model.State;
+	import uk.co.tapestry.events.MainNaviEvent;
 	import uk.co.tapestry.view.components.Apartments;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
@@ -47,6 +49,7 @@ package uk.co.tapestry.view {
 		public function Init():void {
 			var dD:DataProxy 	= facade.retrieveProxy(DataProxy.NAME) as DataProxy;	
 			viewComponent		= new Apartments( ((facade as ApplicationFacade).getContainerByName('mainContainer') as Sprite), dD.getNewsList());
+			(component as Apartments).addEventListener(MainNaviEvent.MAINNAV_CLICK, MainnavClickHandler);
 			(component as Apartments).addEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);
 			(component as Apartments).addEventListener(StateChangeEvent.ANIMATION_OUT_COMPLETE, onAnimationOutComplete);	
 			trace('News Mediator Init');
@@ -54,9 +57,19 @@ package uk.co.tapestry.view {
 		
 		public function Kill():void {
 			(component as Apartments).Kill();
+			(component as Apartments).removeEventListener(MainNaviEvent.MAINNAV_CLICK, MainnavClickHandler);
 		}
 		
 		// HANDLERS --------------------------------- //	
+		
+		private function MainnavClickHandler(mM:MainNaviEvent):void {
+			
+			trace('TapestryMediator: ' + mM.targetContent);
+			//TODO: Tapestry Sub Navi
+			if (mM.targetContent) {
+				sendNotification(ApplicationFacade.STATE_CHANGE, new State( new Array(mM.targetContent) ));
+			}
+		}
 		
 		private function onAnimationInComplete(e:StateChangeEvent):void {
 			component.removeEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);

@@ -38,7 +38,7 @@ package uk.co.tapestry.view.components {
 		override public function Init():void {
 			
 			super.Init();
-			_container 		= new AssetNews();
+			_container 		= new AssetFinder();
 			bg	 			= _container.getChildByName('bg') as Sprite;
 			//TODO: when animated in
 			_mainContainer.addChild(_container);

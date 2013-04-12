@@ -23,6 +23,7 @@ package uk.co.tapestry.view.components {
 		
 		private var bg:Sprite;
 		private var _data:Array;
+		private var _map:ScalableMap;
 
 		
 		// CONSTRUCTOR ------------------------------ //		
@@ -38,10 +39,14 @@ package uk.co.tapestry.view.components {
 		override public function Init():void {
 			
 			super.Init();
-			_container 		= new AssetNews();
+			_container 		= new AssetLiving();
 			bg	 			= _container.getChildByName('bg') as Sprite;
 			//TODO: when animated in
+			_map		= new ScalableMap();
+			_map.Init();
+			
 			_mainContainer.addChild(_container);
+			_container.addChild(_map);
 			
 			//bg.alpha 				= 0.7;
 			_container.alpha = 0;

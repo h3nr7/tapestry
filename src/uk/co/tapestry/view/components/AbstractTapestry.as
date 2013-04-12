@@ -16,7 +16,6 @@ package uk.co.tapestry.view.components {
 	public class AbstractTapestry extends AbstractNavi implements IComponent, INavi {
 		
 		//tapestry buttons
-		protected var bg:Sprite;
 		protected var _maker:Sprite;
 		protected var _apartments:Sprite;
 		protected var _location:Sprite;
@@ -29,9 +28,8 @@ package uk.co.tapestry.view.components {
 		
 		//override 
 		override public function Init():void {
-			bg	 			= _container.getChildByName('bg') as Sprite;
 			_maker			= _container.getChildByName('maker') as Sprite;
-			_apartments		= _container.getChildByName('apartment') as Sprite;
+			_apartments		= _container.getChildByName('apartments') as Sprite;
 			_location		= _container.getChildByName('location') as Sprite;
 			_specifications	= _container.getChildByName('specifications') as Sprite;
 		}
@@ -51,6 +49,7 @@ package uk.co.tapestry.view.components {
 		// HANDLERS ------------------------------ //	
 		
 		protected function makerClickHandler(eE:MouseEvent):void {
+			trace('mememe clicked!');
 			dispatchEvent(new MainNaviEvent(MainNaviEvent.MAINNAV_CLICK, StateValues.MAKER));
 		}
 		

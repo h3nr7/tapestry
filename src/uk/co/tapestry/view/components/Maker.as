@@ -46,13 +46,20 @@ package uk.co.tapestry.view.components {
 			//bg.alpha 				= 0.7;
 			_container.alpha = 0;
 			TweenMax.fromTo(_container, 0.5, {y: _container.y+30, alpha:0, ease: Elastic.easeInOut}, {y: _container.y, alpha:1, onComplete:onAnimationInComplete});
+			Enable();
 		}
 		
 		override public function Kill(isSlow:Boolean = false):void {
 			trace('News Component Killed');
 			_mainContainer.removeChild(_container);
 			_container = null;
+			Disable();
 			onAnimationOutComplete();
+		}
+		
+		override public function onAnimationInComplete(e:Event = null):void {
+			super.onAnimationInComplete(e);
+			
 		}
 					
 		

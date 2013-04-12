@@ -32,8 +32,10 @@ package uk.co.tapestry.controller {
 			var finderXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).finderXMLURL());
 			var communicationsXML:XML 	= LoaderMax.getContent((facade as ApplicationFacade).communicationsXMLURL());
 			var galleryXML:XML 			= LoaderMax.getContent((facade as ApplicationFacade).galleryXMLURL());
+			var specificationsXML:XML 	= LoaderMax.getContent((facade as ApplicationFacade).specificationsXMLURL());
+			var newsXML:XML				= LoaderMax.getContent((facade as ApplicationFacade).newsXMLURL());
 			trace(galleryXML);
-			var dataProxy:DataProxy 		= new DataProxy(configXML, videoXML, finderXML, communicationsXML, galleryXML);
+			var dataProxy:DataProxy 		= new DataProxy(configXML, videoXML, finderXML, communicationsXML, galleryXML, specificationsXML, newsXML);
 			facade.registerProxy(dataProxy);
 			
 			//main navi mediator

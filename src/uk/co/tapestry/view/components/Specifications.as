@@ -1,5 +1,6 @@
 package uk.co.tapestry.view.components {
 	
+	import uk.co.tapestry.view.INavi;
 	import com.greensock.easing.Elastic;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
@@ -17,12 +18,13 @@ package uk.co.tapestry.view.components {
 	/**
 	 * @author henryyp
 	 */
-	public class Specifications extends AbstractComponent implements IComponent {
+	public class Specifications extends AbstractTapestry implements IComponent, INavi {
 		
 		// VARIABLES -------------------------------- //
 		
-		private var bg:Sprite;
+		//private var bg:Sprite;
 		private var _data:Array;
+		private var _slideShow:Slideshow;
 
 		
 		// CONSTRUCTOR ------------------------------ //		
@@ -37,21 +39,31 @@ package uk.co.tapestry.view.components {
 		// FUNCTION ------------------------------ //		
 		override public function Init():void {
 			
+			_container 		= new AssetSpecifications();
 			super.Init();
-			_container 		= new AssetNews();
-			bg	 			= _container.getChildByName('bg') as Sprite;
-			//TODO: when animated in
-			_mainContainer.addChild(_container);
+			//bg	 			= _container.getChildByName('bg') as Sprite;
 			
-			//bg.alpha 				= 0.7;
+			_slideShow		= new Slideshow(_data);
+			_slideShow.Init();
+			
+			//TODO: setup slideshow component
+
+			
+			_mainContainer.addChild(_container);
+			_container.addChild(_slideShow);
 			_container.alpha = 0;
+			//TODO: when animated in
 			TweenMax.fromTo(_container, 0.5, {y: _container.y+30, alpha:0, ease: Elastic.easeInOut}, {y: _container.y, alpha:1, onComplete:onAnimationInComplete});
+			Enable();
 		}
 		
 		override public function Kill(isSlow:Boolean = false):void {
-			trace('News Component Killed');
+			trace('Specifications Component Killed');
+			_slideShow.Kill();
+			_container.removeChild(_slideShow);
 			_mainContainer.removeChild(_container);
 			_container = null;
+			Disable();
 			onAnimationOutComplete();
 		}
 					

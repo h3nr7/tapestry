@@ -34,6 +34,7 @@ package uk.co.tapestry.view.components {
 		private var leftBut:Sprite;
 		private var rightBut:Sprite;
 		private var thumbnail:Sprite;
+		FontClass_12f1c4691f61db80;
 		
 		// CONSTRUCTOR --------------------------------- //
 		public function Slideshow(data:Array) {

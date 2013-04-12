@@ -1,4 +1,7 @@
 package uk.co.tapestry.view {
+	import uk.co.tapestry.model.State;
+	import uk.co.tapestry.events.MainNaviEvent;
+	import uk.co.tapestry.view.components.MainNavButtons;
 	import uk.co.tapestry.view.components.Maker;
 	import uk.co.tapestry.events.StateChangeEvent;
 	import flash.display.Sprite;
@@ -47,6 +50,7 @@ package uk.co.tapestry.view {
 		public function Init():void {
 			var dD:DataProxy 	= facade.retrieveProxy(DataProxy.NAME) as DataProxy;	
 			viewComponent		= new Maker( ((facade as ApplicationFacade).getContainerByName('mainContainer') as Sprite), dD.getNewsList());
+			(component as Maker).addEventListener(MainNaviEvent.MAINNAV_CLICK, MainnavClickHandler);
 			(component as Maker).addEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);
 			(component as Maker).addEventListener(StateChangeEvent.ANIMATION_OUT_COMPLETE, onAnimationOutComplete);	
 			trace('Maker Mediator Init');
@@ -54,9 +58,21 @@ package uk.co.tapestry.view {
 		
 		public function Kill():void {
 			(component as Maker).Kill();
+			(component as Maker).removeEventListener(MainNaviEvent.MAINNAV_CLICK, MainnavClickHandler);
 		}
 		
+		
+		
 		// HANDLERS --------------------------------- //	
+		
+		private function MainnavClickHandler(mM:MainNaviEvent):void {
+			
+			trace('TapestryMediator: ' + mM.targetContent);
+			//TODO: Tapestry Sub Navi
+			if (mM.targetContent) {
+				sendNotification(ApplicationFacade.STATE_CHANGE, new State( new Array(mM.targetContent) ));
+			}
+		}
 		
 		private function onAnimationInComplete(e:StateChangeEvent):void {
 			component.removeEventListener(StateChangeEvent.ANIMATION_IN_COMPLETE, onAnimationInComplete);

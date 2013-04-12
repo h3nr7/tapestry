@@ -35,13 +35,13 @@ package uk.co.tapestry.view.components {
 			removeEventListener(Event.ADDED_TO_STAGE,Init);
 		}
 		
-		protected function onAnimationInComplete(e:Event = null):void
+		public function onAnimationInComplete(e:Event = null):void
 		{
 			dispatchEvent(new StateChangeEvent(StateChangeEvent.ANIMATION_IN_COMPLETE));
 			trace('message StateChangeEvent: '+StateChangeEvent.ANIMATION_IN_COMPLETE);
 		}
 		
-		protected function onAnimationOutComplete(e:Event = null):void
+		public function onAnimationOutComplete(e:Event = null):void
 		{
 			dispatchEvent(new StateChangeEvent(StateChangeEvent.ANIMATION_OUT_COMPLETE));
 		}

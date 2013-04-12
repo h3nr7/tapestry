@@ -21,8 +21,8 @@ package uk.co.tapestry.view.components {
 		
 		// VARIABLES -------------------------------- //
 		
-		private var bg:Sprite;
 		private var _data:Array;
+		private var newsContent:NewsItem;
 
 		
 		// CONSTRUCTOR ------------------------------ //		
@@ -31,6 +31,7 @@ package uk.co.tapestry.view.components {
 			super(sS);
 			_data = iData;
 			Init();
+			
 		}
 
 		
@@ -39,9 +40,10 @@ package uk.co.tapestry.view.components {
 			
 			super.Init();
 			_container 		= new AssetNews();
-			bg	 			= _container.getChildByName('bg') as Sprite;
+			newsContent		= new NewsItem(_data);
 			//TODO: when animated in
 			_mainContainer.addChild(_container);
+			_container.addChild(newsContent);
 			
 			//bg.alpha 				= 0.7;
 			_container.alpha = 0;
@@ -50,6 +52,7 @@ package uk.co.tapestry.view.components {
 		
 		override public function Kill(isSlow:Boolean = false):void {
 			trace('News Component Killed');
+			_container.removeChild(newsContent);
 			_mainContainer.removeChild(_container);
 			_container = null;
 			onAnimationOutComplete();
