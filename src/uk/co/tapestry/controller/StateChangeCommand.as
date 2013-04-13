@@ -35,7 +35,7 @@ package uk.co.tapestry.controller {
 					{
 						trace("2 currentState.statePath[i] != nextState.statePath[i]", ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
 						sendNotification(ApplicationFacade.EXIT_CURRENT_STATE, currentState.statePath.slice(i));
-	
+						
 						return;
 					}
 					else if (currentState.statePath[i] == nextState.statePath[i])

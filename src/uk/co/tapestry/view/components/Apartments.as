@@ -70,6 +70,7 @@ package uk.co.tapestry.view.components {
 		
 		override public function Kill(isSlow:Boolean = false):void {
 			trace('Apartments Component Killed');
+			TweenMax.killAll(true, true, false);
 			_mainContainer.removeChild(_container);
 			_container = null;
 			Disable();
@@ -87,49 +88,52 @@ package uk.co.tapestry.view.components {
 		
 		private function ShowCanal():void {
 			TweenMax.fromTo(canal, 0.5, {alpha:0}, {alpha:1, ease:RoughEase.create(2, 5)});
-			TweenMax.fromTo(canalTxt, 0.5, {alpha:0, x:canalTxt.x+20, delay: 0.4}, {alpha:1, x:canalTxt.x});
+			TweenMax.fromTo(canalTxt, 0.5, {alpha:0, y:canalTxt.y+20, delay: 0.4}, {alpha:1, y:canalTxt.y});
 		}
 		
 		private function HideCanal():void {
 			TweenMax.fromTo(canal, 0.2, {alpha:1}, {alpha:0});
-			TweenMax.fromTo(canalTxt, 0.2, {alpha:1}, {alpha:0});
+			canalTxt.alpha	= 0;
 		}
 		
 		private function ShowGarden():void {
 			TweenMax.fromTo(garden, 0.5, {alpha:0}, {alpha:1, ease:RoughEase.create(2, 5)});
-			TweenMax.fromTo(gardenTxt, 0.5, {alpha:0, x:gardenTxt.x+20, delay: 0.4}, {alpha:1, x:gardenTxt.x});
+			TweenMax.fromTo(gardenTxt, 0.5, {alpha:0, y:gardenTxt.y+20, delay: 0.4}, {alpha:1, y:gardenTxt.y});
 		}
 		
 		private function HideGarden():void {
 			TweenMax.fromTo(garden, 0.2, {alpha:1}, {alpha:0});
-			TweenMax.fromTo(gardenTxt, 0.2, {alpha:1}, {alpha:0});
+			gardenTxt.alpha		= 0;
 		}
 		
 		private function ShowCloud():void {
 			TweenMax.fromTo(cloud, 0.5, {alpha:0}, {alpha:1, ease:RoughEase.create(2, 5)});
-			TweenMax.fromTo(gardenTxt, 0.5, {alpha:0, x:gardenTxt.x+20, delay: 0.4}, {alpha:1, x:gardenTxt.x});
+			TweenMax.fromTo(cloudTxt, 0.5, {alpha:0, y:gardenTxt.y+20, delay: 0.4}, {alpha:1, y:gardenTxt.y});
 		}
 		
 		private function HideCloud():void {
 			TweenMax.fromTo(cloud, 0.2, {alpha:1}, {alpha:0, ease:RoughEase.create(1, 10)});
-			TweenMax.fromTo(cloudTxt, 0.2, {alpha:1}, {alpha:0});
+			cloudTxt.alpha		= 0;
 		}
 		
 		// HANDLERS ------------------------------ //	
 		
 		private function canalClickHandler(eE:MouseEvent = null):void {
+			TweenMax.killAll(true, true, false);
 			ShowCanal();
 			HideGarden();
 			HideCloud();		
 		}
 		
 		private function gardenClickHandler(eE:MouseEvent):void {
+			TweenMax.killAll(true, true, false);
 			HideCanal();
 			ShowGarden();
 			HideCloud();		
 		}
 		
 		private function cloudClickHandler(eE:MouseEvent):void {
+			TweenMax.killAll(true, true, false);
 			HideCanal();
 			HideGarden();
 			ShowCloud();		

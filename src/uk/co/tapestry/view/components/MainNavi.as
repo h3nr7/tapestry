@@ -1,5 +1,6 @@
 package uk.co.tapestry.view.components {
 	
+	import flash.utils.Timer;
 	import flash.display.Sprite;
 	import flash.display.MovieClip;
 	import flash.events.*;
@@ -24,6 +25,7 @@ package uk.co.tapestry.view.components {
 		private var labels:Object;
 		private var tT:Array;
 		private var bg:Sprite;
+		private var pTime:Timer;
 
 
 		
@@ -44,7 +46,6 @@ package uk.co.tapestry.view.components {
 			_container = new AssetMainNavi();
 			
 			_mainContainer.addChild(_container);
-			trace('me is showing');
 			Init();
 		}
 
@@ -61,10 +62,13 @@ package uk.co.tapestry.view.components {
 				tT[i] 					= tmp;
 			}
 			
+			//init timer
+			pTime 	= new Timer(2000, 1);
 			//init position
 			_container.x 			= closeX;
 			bg 						= _container.getChildByName('bg') as Sprite;
-			Enable();
+			bg.addEventListener(MouseEvent.CLICK, NavClickHandler)
+			//Enable();
 		}
 		
 		override public function Enable():void {
@@ -72,7 +76,7 @@ package uk.co.tapestry.view.components {
 			for(var i:String in labels) {
 				tT[i].container.addEventListener(MouseEvent.CLICK, NavButtonClickHandler);
 			}
-			bg.addEventListener(MouseEvent.CLICK, NavClickHandler);
+			//bg.addEventListener(MouseEvent.CLICK, NavClickHandler);
 		}
 		
 		override public function Disable():void {
@@ -80,22 +84,62 @@ package uk.co.tapestry.view.components {
 			for(var i:String in labels) {
 				tT[i].container.removeEventListener(MouseEvent.CLICK, NavButtonClickHandler);
 			}
-			bg.removeEventListener(MouseEvent.CLICK, NavClickHandler);
+			//bg.removeEventListener(MouseEvent.CLICK, NavClickHandler);
+		}
+		
+		//init timer
+		private function initTimer():void {
+			pTime.addEventListener(TimerEvent.TIMER, pTimeHandler);
+			pTime.start();
+		}
+		
+		private function killTimer():void {
+			pTime.stop();
+			pTime.removeEventListener(TimerEvent.TIMER, pTimeHandler);
+		}
+		
+		private function resetTimer():void {
+			pTime.reset();
+			pTime.start();
+		}
+		
+		//close and open the main nav
+		private function openNavi():void {
+			TweenMax.to(_container, 0.2, {x:openX, onStart: Disable, onComplete: Enable});
+			initTimer();
+		}
+		
+		private function closeNavi():void {
+			TweenMax.to(_container, 0.2, {x:closeX, onStart: Disable, onComplete: Enable});
+			killTimer();
 		}
 		
 		
 		// HANDLERS ------------------------------ //		
+		
+		private function pTimeHandler(eE:TimerEvent):void {
+			pTime.removeEventListener(TimerEvent.TIMER, pTimeHandler);
+			if (_container.x >= 0) {
+				closeNavi();
+			}
+		}
 		private function NavClickHandler(eE:MouseEvent):void {
 			if (_container.x >= 0) {
-				TweenMax.to(_container, 0.2, {x:closeX, onStart: Disable, onComplete: Enable});
+				closeNavi();
 			}
 			else {
-				TweenMax.to(_container, 0.2, {x:openX, onStart: Disable, onComplete: Enable});
+				openNavi();
 			}
 		}
 		
 		private function NavButtonClickHandler(eE:MouseEvent):void {
 			trace('Main Navi Button Click: '+eE.currentTarget.name);
+			if (_container.x < 0) {
+				openNavi();
+			}
+			else {
+				resetTimer();
+			}
 			dispatchEvent(new MainNaviEvent(MainNaviEvent.MAINNAV_CLICK, eE.currentTarget.name));
 		}
 	}

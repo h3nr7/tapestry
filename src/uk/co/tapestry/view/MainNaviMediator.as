@@ -31,11 +31,20 @@ package uk.co.tapestry.view {
 			Init();	
 		}
 		
+		override public function listNotificationInterests():Array
+		{
+			return [ApplicationFacade.STATE_CHANGE_COMPLETE, ApplicationFacade.EXIT_CURRENT_STATE];
+		}
+		
 		override public function handleNotification (notification:INotification):void {
 			
 			switch (notification.getName()) {
 				
-				case ApplicationFacade.STARTUP:
+				case ApplicationFacade.STATE_CHANGE_COMPLETE:
+					(component as MainNavi).Enable();
+					break;
+				case ApplicationFacade.EXIT_CURRENT_STATE:
+					(component as MainNavi).Disable();
 					break;
 				
 			}
