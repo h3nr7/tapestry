@@ -1,0 +1,8 @@
+# Air app
+*.air
+
+# Packaged exort
+/bin/*
+/deploy/*
+/export/*
+
